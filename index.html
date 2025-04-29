@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Practical File Downloads</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .download-btn {
+      width: 100%;
+      background-color: #0788f9;
+      color: white;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .download-btn:hover {
+      background-color: #055bb5;
+    }
+
+    .download-btn1 {
+      width: 100%;
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .download-btn1:hover {
+      background-color: #cc0000;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+
+<body class="bg-dark">
+  <div class="container py-5">
+
+    <div class="header">
+      <h1 class="mb-0">Practical File Downloads</h1>
+      <a href="https://www.instagram.com/techusv" target="_blank">
+        <img src="./Image/insta-lcon.png" alt="Instagram" width="50">
+      </a>
+    </div>
+
+    <div class="row">
+      <!-- CG Section -->
+      <div class="col-md-6">
+        <div class="card mb-4">
+          <div class="card-header bg-primary text-white">
+            <h3>CG Practical Files</h3>
+          </div>
+          <div class="card-body bg-dark text-white">
+            <ol id="cg-file-list" class="mb-0"></ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- CSF Section -->
+      <div class="col-md-6">
+        <div class="card mb-4">
+          <div class="card-header bg-danger text-white">
+            <h3>CSF Practical Files</h3>
+          </div>
+          <div class="card-body bg-dark text-white">
+            <ol id="csf-file-list" class="mb-0"></ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const cgFiles = [
+      "cg.zip",
+      "flash.txt",
+      "Character_Dropping.fla",
+      "Growing_Moon.fla",
+      "Guided_Path_Effect.fla",
+      "Mask_Effect.fla",
+      "Move_Circle_around_the_stage.fla",
+      "Moving_Car.fla",
+      "Shape_Motion_Effect.fla",
+      "Sun_Set.fla",
+      "Tween_Motion_Effect.fla",
+      "xx_loginForm.fla",
+      "xx_loginFormAdvance.fla",
+      "xx_loginFormNormal.fla",
+      "xx_movingBallInPath.fla"
+    ];
+
+    const csfFiles = [
+      "csf.zip",
+      "ETHICAL_HACKING_COMMANDS_IN_WINDOWS.pdf.pdf",
+      "John_The_Ripper_TOOL_MANUAL.pdf",
+      "Hashing_Cryptography_Manual.pdf",
+      "CSF_Autopsy_Practical_Manual.pdf",
+      "Workshop.pdf"
+    ];
+
+    function populateList(listId, files, folder, buttonClass) {
+      const container = document.getElementById(listId);
+      files.forEach(file => {
+        const li = document.createElement("li");
+        li.className = "mb-3";
+        li.innerHTML = `
+          <button class="btn ${buttonClass} mb-3" onclick="downloadFile('${folder}/${file}')">
+            ${file}
+          </button>
+        `;
+        container.appendChild(li);
+      });
+    }
+
+    function downloadFile(path) {
+      const a = document.createElement("a");
+      a.href = path;
+      a.download = path;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    populateList("cg-file-list", cgFiles, "cg", "download-btn");
+    populateList("csf-file-list", csfFiles, "csf", "download-btn1");
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
